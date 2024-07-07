@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+    <script>
+        async function viewPrice(item) {  
+        // const user = localStorage.getItem("fastery_user");
+        // console.log('user', user)
+
+        // const data = {
+        // user,
+        // item,
+        // };
+        const response = await fetch(`http://127.0.0.1:5000/getPrice/${item}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        // body: JSON.stringify(data),
+      });
+      const result = await response.json()
+    //   let text = "How are you doing today?";
+        // const myArray = result.split(":");
+        console.log(result);
+        // result = int(result);
+      
+        document.getElementById("demo").innerHTML = `Item Price : ${result}`;
+      
+
+      }
+
+
+      async function viewQuantity(item) {  
+        // const user = localStorage.getItem("fastery_user");
+        // console.log('user', user)
+
+        // const data = {
+        // user,
+        // item,
+        // };
+        const response = await fetch(`http://127.0.0.1:5000/getQuantity/${item}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        // body: JSON.stringify(data),
+      });
+      const result = await response.json()
+    //   let text = "How are you doing today?";
+        // const myArray = result.split(":");
+        console.log(result);
+        // result = int(result);
+      
+        document.getElementById("demo").innerHTML = `Item Quantity : ${result}`;
+      
+
+      }
+
+        </script>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventory</title>
+    <style>
+        /* Add your CSS styles here */
+        .inventory-heading {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        .inventory-item {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+        .btn {
+            padding: 5px 10px;
+            margin-right: 5px;
+            cursor: pointer;
+        }
+        .btn-primary {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+        }
+        .btn-secondary {
+            background-color: #6c757d;
+            color: #fff;
+            border: none;
+        }
+        .btn-success {
+            background-color: #28a745;
+            color: #fff;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <h2 class="inventory-heading">Inventory</h2>
+
+    <div class="inventory-item">
+        <h3>Coke 250ml</h3>
+        <!-- <p>Description: </p> -->
+        <!-- <p>Price: $19.99</p> -->
+        <!-- <button class="btn btn-primary" onclick="addToCart(1)">Add to Cart</button> -->
+        <button class="btn btn-primary" onclick="viewQuantity(1)">View Quantity</button>
+
+        <button class="btn btn-primary" onclick="viewPrice(1)">View Price</button>
+        <!-- <button class="btn btn-success" onclick="addToWishlist(1)">Add to Wishlist</button> -->
+    </div>
+
+    <div class="inventory-item">
+        <h3>Britannia Cake</h3>
+        <!-- <p>Description: </p>
+        <p>Price: $29.99</p> -->
+        <!-- <button class="btn btn-primary" onclick="addToCart(2)">Add to Cart</button> -->
+        <button class="btn btn-primary" onclick="viewQuantity(2)">View Quantity</button>
+
+        <button class="btn btn-primary" onclick="viewPrice(2)">View Price</button>
+        <!-- <button class="btn btn-success" onclick="addToWishlist(2)">Add to Wishlist</button> -->
+    </div>
+
+    <div class="inventory-item">
+        <h3> Alpenlibe Candies 100pk</h3>
+        <!-- <p>Description:</p>
+        <p>Price: $39.99</p> -->
+        <!-- <button class="btn btn-primary" onclick="addToCart(3)">Add to Cart</button> -->
+        <button class="btn btn-primary" onclick="viewQuantity(3)">View Quantity</button>
+
+        <button class="btn btn-primary" onclick="viewPrice(3)">View Price</button>
+        <!-- <button class="btn btn-success" onclick="addToWishlist(3)">Add to Wishlist</button> -->
+    </div>
+
+</div>
+<p id="demo"></p>
+</div>
+
+    <!-- <script>
+        function addToCart(itemId) {
+            // Implement adding item to cart functionality
+            console.log('Adding item ' + itemId + ' to cart...');
+        }
+
+        function viewDetails(itemId) {
+            // Implement viewing item details functionality
+            console.log('Viewing details of item ' + itemId + '...');
+        }
+
+        function addToWishlist(itemId) {
+            // Implement adding item to wishlist functionality
+            console.log('Adding item ' + itemId + ' to wishlist...');
+        }
+    </script> -->
+</body>
+</html>

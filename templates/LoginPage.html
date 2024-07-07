@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <script>
+    async function myFunction() {
+      
+      let pass = document.getElementById("password"); 
+      let password = pass.value;
+
+      let temp = document.getElementById("username"); 
+      let user = temp.value;
+      
+      const data = {
+        user,
+        password,
+      };
+      if (user == "admin" && password == "admin"){
+      // console.log("going well");
+      window.open(`http://127.0.0.1:5000/admin`);
+      }
+      else{
+      const response = await fetch('http://127.0.0.1:5000/user/login', {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+    const movies = await response.json();
+    console.log(movies);
+    
+
+    if (movies == "1"){
+      // console.log("going 2");
+    localStorage.setItem("fastery_user", user);
+    window.open(`http://127.0.0.1:5000/items/${user}`);
+    }
+    else if (movies == "0"){
+        document.getElementById("demo").innerHTML =
+        "Invalid Credentials!!! Please retry ";
+    }
+
+    else if (movies == "3"){
+      document.getElementById("demo").innerHTML =
+        "Account Blocked :-( :-( <br> Please Contact Admin ";
+    }
+
+    else{
+      document.getElementById("demo").innerHTML =
+        "Incorrect Password!!! Please retry ";
+    }
+  }
+    // console.log(movies);
+    // document.getElementById("demo").innerHTML =
+    //             "Welcome to Geeks For Geeks again ";
+  }
+    </script>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FASTERY Login</title>
+  <style>
+    /* Background with light green color */
+    body {
+      font-family: sans-serif;
+      background-color: #b9fbaf; /* Light green color code */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    /* Login form styling with light brown background color */
+    .login-form {
+      padding: 30px;
+      border: none; /* Remove border for cleaner look */
+      border-radius: 5px;
+      background-color: #d2b48c; /* Light brown color (optional, adjust if needed) */
+      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2); /* Softer shadow */
+      text-align: center;
+    }
+
+    /* Added margin for spacing */
+    .input-container {
+      margin-bottom: 15px; /* Add space between input containers */
+    }
+
+    .input-field label {
+      display: block;
+      margin-bottom: 5px; /* Add space after label */
+      color: #666; /* Adjust label color */
+    }
+  </style>
+</head>
+<body>
+  <div class="login-form">
+    <h2>FASTERY Login</h2>
+    <form action="#">
+      <div class="input-container">
+        <label for="username">Username</label>
+        <input type="text" id="username" name="username" required>
+      </div>
+      <div class="input-container">
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" required>
+      </div>
+     
+    </form>
+    <div class.button-container>
+      <button onclick="myFunction()">Login</button>
+    </div>
+    <p id="demo"></p>
+  </div>
+</body>
+</html>
